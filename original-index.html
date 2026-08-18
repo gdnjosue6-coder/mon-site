@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centre des récompenses</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#ff5b30;
+    --orange-dark:#e8481f;
+    --peach-bg:#fdeee6;
+    --card-bg:#ffffff;
+    --dark:#1c1c1e;
+    --muted:#8a8a8f;
+    --gold:#f6a609;
+    --day-locked-bg:#fbe6de;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{
+    font-family:'Open Sans', sans-serif;
+    background:#f3f3f5;
+    display:flex;
+    justify-content:center;
+    padding:24px 0;
+  }
+
+  .phone{
+    width:390px;
+    max-width:100%;
+    background:var(--peach-bg);
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+    position:relative;
+  }
+
+  /* ---------- HEADER ---------- */
+  .header{
+    padding:28px 22px 20px;
+    position:relative;
+  }
+  .header-text h1{
+    font-family:'Poppins',sans-serif;
+    font-size:26px;
+    font-weight:800;
+    color:var(--dark);
+    line-height:1.25;
+    margin-bottom:10px;
+    max-width:230px;
+  }
+  .header-text p{
+    font-size:13.5px;
+    color:#4a4a4d;
+    line-height:1.6;
+    max-width:230px;
+    margin-bottom:10px;
+  }
+  .learn-more{
+    color:var(--orange);
+    font-weight:700;
+    font-size:14px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    background:none;
+    border:none;
+    cursor:pointer;
+  }
+  .learn-more i{font-size:11px;}
+
+  .top-nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 16px 0;
+  }
+  .nav-logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:800;
+    color:var(--dark);
+    font-size:15px;
+  }
+  .nav-logo-icon{
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--gold),#ffcc4d);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    box-shadow:0 6px 12px rgba(246,166,9,.22);
+  }
+  .header-art{
+    position:absolute;
+    top:18px;
+    right:16px;
+    width:120px;
+    height:120px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .phone-icon{
+    width:58px;height:100px;
+    background:#111;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 20px rgba(0,0,0,.25);
+    position:relative;
+    z-index:2;
+  }
+  .phone-icon i{color:#fff;font-size:22px;}
+  .avatar-blob{
+    position:absolute;
+    right:0;
+    bottom:6px;
+    width:64px;height:64px;
+    background:linear-gradient(145deg,#ffb199,#ff8a65);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:1;
+  }
+  .avatar-blob i{color:#fff;font-size:24px;}
+
+  /* ---------- BALANCE CARD ---------- */
+  .balance-card{
+    margin:0 16px 20px;
+    background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+    border-radius:16px;
+    padding:20px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    color:#fff;
+    cursor:pointer;
+    border:none;
+    width:calc(100% - 32px);
+    text-align:left;
+    transition:.15s;
+  }
+  .balance-card:active{transform:scale(.98);}
+  .balance-left .points{
+    font-family:'Poppins',sans-serif;
+    font-size:28px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .points .p-badge{
+    width:20px;height:20px;
+    background:rgba(255,255,255,.25);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;
+    font-weight:700;
+  }
+  .balance-left .value{
+    font-size:12.5px;
+    opacity:.9;
+    margin-top:4px;
+  }
+  .balance-right{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-weight:700;
+    font-size:14.5px;
+  }
+
+  /* ---------- SECTION TITLE ---------- */
+  .section-title{
+    padding:0 22px 12px;
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:16.5px;
+    color:var(--dark);
+  }
+
+  .withdraw-grid{
+    margin:0 16px 20px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:10px;
+  }
+  .withdraw-card{
+    background:var(--card-bg);
+    border:1px solid #f0f0f2;
+    border-radius:16px;
+    padding:14px 10px;
+    text-align:center;
+    cursor:pointer;
+    box-shadow:0 6px 14px rgba(0,0,0,.03);
+    transition:.15s;
+  }
+  .withdraw-card:active{transform:scale(.97);}
+  .withdraw-icon{
+    width:42px;height:42px;
+    border-radius:12px;
+    margin:0 auto 10px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;
+    color:#fff;
+  }
+  .withdraw-icon.paypal{background:#0070ba;}
+  .withdraw-icon.bitcoin{background:#f7931a;}
+  .withdraw-icon.momo{background:#0ea5e9;}
+  .withdraw-title{font-weight:800;font-size:13px;color:var(--dark);margin-bottom:4px;}
+  .withdraw-desc{font-size:11px;color:var(--muted);line-height:1.4;}
+
+  .withdraw-form{
+    display:none;
+    flex-direction:column;
+    gap:10px;
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px solid #f0f0f2;
+  }
+  .withdraw-form.active{display:flex;}
+  .withdraw-input{
+    border:1px solid #ececf0;
+    background:#fcfcfd;
+    border-radius:12px;
+    padding:10px 12px;
+    font-size:13px;
+    color:var(--dark);
+    outline:none;
+  }
+  .withdraw-input:focus{
+    border-color:var(--orange);
+    box-shadow:0 0 0 3px rgba(255,91,48,.15);
+  }
+  .withdraw-submit{
+    border:none;
+    background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+    color:#fff;
+    padding:10px 12px;
+    border-radius:12px;
+    font-weight:700;
+    cursor:pointer;
+  }
+
+  /* ---------- STREAK CARD ---------- */
+  .streak-card{
+    margin:0 16px 24px;
+    background:var(--card-bg);
+    border-radius:18px;
+    padding:22px 20px 20px;
+    box-shadow:0 6px 18px rgba(0,0,0,.04);
+  }
+  .streak-dates{
+    font-size:12.5px;
+    color:var(--muted);
+    margin-bottom:8px;
+  }
+  .streak-title{
+    font-family:'Poppins',sans-serif;
+    font-size:19px;
+    font-weight:800;
+    color:var(--dark);
+    line-height:1.35;
+    margin-bottom:6px;
+  }
+  .streak-reward{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Poppins',sans-serif;
+    font-weight:800;
+    font-size:19px;
+    color:var(--orange);
+    margin-bottom:18px;
+  }
+  .streak-reward .p-badge{
+    width:20px;height:20px;
+    background:rgba(255,91,48,.15);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;
+  }
+
+  .days-row{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    padding-bottom:6px;
+    scrollbar-width:none;
+  }
+  .days-row::-webkit-scrollbar{display:none;}
+
+  .day-item{
+    flex:0 0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    position:relative;
+  }
+  .day-arrow{
+    position:absolute;
+    top:-20px;
+    color:var(--orange);
+    font-size:13px;
+    animation:bounce 1.2s infinite;
+  }
+  @keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-4px);}
+  }
+  .day-box{
+    width:66px;height:66px;
+    border-radius:14px;
+    background:var(--day-locked-bg);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:13.5px;
+    color:var(--orange);
+    border:none;
+    cursor:pointer;
+    transition:.15s;
+    gap:2px;
+  }
+  .day-box:active{transform:scale(.94);}
+  .day-box .p-badge{
+    width:16px;height:16px;
+    background:rgba(255,91,48,.15);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:9px;
+    margin-bottom:2px;
+  }
+  .day-box.claimed{
+    background:var(--gold);
+    color:#fff;
+  }
+  .day-box.claimed i{font-size:20px;}
+  .day-box.today{
+    background:var(--gold);
+    color:#fff;
+    box-shadow:0 0 0 3px rgba(246,166,9,.25);
+  }
+  .day-box.locked{opacity:.55;}
+
+  .day-label{font-size:12px;color:var(--muted);font-weight:600;}
+
+  /* ---------- TOAST ---------- */
+  .toast{
+    position:absolute;
+    left:50%;
+    bottom:24px;
+    transform:translateX(-50%) translateY(20px);
+    background:var(--dark);
+    color:#fff;
+    padding:12px 20px;
+    border-radius:30px;
+    font-size:13.5px;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:50;
+    white-space:nowrap;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast i{color:var(--gold);}
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:flex;
+    align-items:flex-end;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    z-index:60;
+  }
+  .modal-overlay.show{opacity:1;pointer-events:auto;}
+  .modal-sheet{
+    background:#fff;
+    width:100%;
+    border-radius:22px 22px 0 0;
+    padding:22px 20px 26px;
+    max-height:75%;
+    overflow-y:auto;
+    transform:translateY(30px);
+    transition:.25s;
+  }
+  .modal-overlay.show .modal-sheet{transform:translateY(0);}
+  .modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+  }
+  .modal-head h3{
+    font-family:'Poppins',sans-serif;
+    font-size:18px;
+    font-weight:800;
+    color:var(--dark);
+  }
+  .modal-close{
+    background:#f2f2f4;
+    border:none;
+    width:30px;height:30px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;
+    color:var(--dark);
+  }
+  .modal-balance{
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:16px;
+  }
+  .modal-balance b{color:var(--orange);}
+
+  .reward-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid #f0f0f2;
+  }
+  .reward-item:last-child{border-bottom:none;}
+  .reward-info{display:flex;align-items:center;gap:12px;}
+  .reward-icon{
+    width:40px;height:40px;
+    border-radius:10px;
+    background:var(--peach-bg);
+    color:var(--orange);
+    display:flex;align-items:center;justify-content:center;
+    font-size:16px;
+  }
+  .reward-name{font-weight:700;font-size:14px;color:var(--dark);}
+  .reward-cost{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:4px;margin-top:2px;}
+  .reward-cost .p-badge{
+    width:14px;height:14px;
+    background:rgba(255,91,48,.15);
+    color:var(--orange);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:8px;
+  }
+  .redeem-btn{
+    background:var(--orange);
+    color:#fff;
+    border:none;
+    padding:9px 16px;
+    border-radius:20px;
+    font-size:12.5px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.15s;
+  }
+  .redeem-btn:disabled{background:#e2e2e5;color:#a1a1a5;cursor:not-allowed;}
+  .redeem-btn:not(:disabled):active{transform:scale(.95);}
+
+  .footer-space{height:20px;}
+
+  .auth-panel{
+    margin:16px 16px 18px;
+    background:var(--card-bg);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+    display:flex;
+    justify-content:flex-end;
+  }
+  .auth-open-btn{
+    border:none;
+    background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+    color:#fff;
+    padding:10px 14px;
+    border-radius:999px;
+    font-weight:800;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-size:13px;
+  }
+  .auth-open-label{
+    margin-left:8px;
+    font-weight:800;
+    color:var(--dark);
+    font-size:14px;
+  }
+  .nav-action-btn,
+  .auth-open-label-btn{
+    border:none;
+    background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+    color:#fff;
+    padding:8px 12px;
+    border-radius:999px;
+    font-weight:800;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    font-size:11px;
+  }
+  .auth-open-btn:active{transform:scale(.98);}
+  .auth-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .auth-title{
+    font-family:'Poppins',sans-serif;
+    font-size:18px;
+    font-weight:800;
+    color:var(--dark);
+  }
+  .auth-subtitle{
+    font-size:13px;
+    color:var(--muted);
+    margin-top:4px;
+  }
+  .auth-badge{
+    background:var(--peach-bg);
+    color:var(--orange);
+    padding:8px 10px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    white-space:nowrap;
+  }
+  .auth-tabs{
+    display:flex;
+    gap:8px;
+    margin-bottom:16px;
+  }
+  .auth-tab{
+    flex:1;
+    border:none;
+    border-radius:999px;
+    padding:10px 12px;
+    font-weight:700;
+    background:#f3f3f5;
+    color:var(--muted);
+    cursor:pointer;
+  }
+  .auth-tab.active{
+    background:var(--orange);
+    color:#fff;
+  }
+  .auth-form{
+    display:none;
+    flex-direction:column;
+    gap:12px;
+  }
+  .auth-form.active{display:flex;}
+  .auth-input{
+    border:1px solid #ececf0;
+    background:#fcfcfd;
+    border-radius:14px;
+    padding:12px 14px;
+    font-size:14px;
+    color:var(--dark);
+    outline:none;
+  }
+  .auth-input:focus{
+    border-color:var(--orange);
+    box-shadow:0 0 0 3px rgba(255,91,48,.15);
+  }
+  .auth-submit{
+    border:none;
+    background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+    color:#fff;
+    padding:12px 14px;
+    border-radius:14px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .auth-submit:active{transform:scale(.98);}
+  .auth-link{
+    text-align:center;
+    font-size:13px;
+    color:var(--muted);
+    margin-top:10px;
+  }
+
+  .earn-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(12,12,14,.6);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    pointer-events:none;
+    transition:.25s;
+    z-index:70;
+    padding:16px;
+  }
+  .earn-overlay.show{opacity:1;pointer-events:auto;}
+  .earn-sheet{
+    background:#fff;
+    width:100%;
+    max-width:340px;
+    border-radius:22px;
+    padding:18px;
+    max-height:90%;
+    overflow-y:auto;
+    transform:translateY(20px);
+    transition:.25s;
+  }
+  .earn-overlay.show .earn-sheet{transform:translateY(0);}
+  .earn-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+  }
+  .earn-head h3{
+    font-family:'Poppins',sans-serif;
+    font-size:18px;
+    font-weight:800;
+    color:var(--dark);
+  }
+  .earn-card{
+    background:var(--peach-bg);
+    border-radius:16px;
+    padding:12px;
+    margin-bottom:12px;
+  }
+  .earn-card h4{
+    font-size:15px;
+    font-weight:800;
+    color:var(--dark);
+    margin-bottom:8px;
+  }
+  .survey-progress{
+    font-size:11px;
+    font-weight:700;
+    color:var(--orange);
+    margin-bottom:8px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  .survey-finish-text{
+    font-size:13px;
+    color:var(--dark);
+    line-height:1.6;
+  }
+  .earn-option{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    color:var(--dark);
+    margin:6px 0;
+  }
+  .earn-video{
+    border-radius:14px;
+    overflow:hidden;
+    margin-top:8px;
+    background:#000;
+  }
+  .earn-video iframe{
+    width:100%;
+    height:180px;
+    border:0;
+  }
+  .earn-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:12px;
+  }
+  .earn-btn{
+    border:none;
+    border-radius:999px;
+    padding:9px 12px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .earn-btn.primary{
+    background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+    color:#fff;
+  }
+  .earn-btn.secondary{
+    background:#f3f3f5;
+    color:var(--dark);
+  }
+  .auth-link button{
+    background:none;
+    border:none;
+    color:var(--orange);
+    font-weight:700;
+    cursor:pointer;
+    padding:0;
+  }
+  .auth-status{
+    min-height:18px;
+    font-size:13px;
+    font-weight:600;
+    color:var(--orange);
+    margin-top:8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="phone" id="phone">
+
+  <div class="top-nav">
+    <div class="nav-logo">
+      <div class="nav-logo-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+      <span>Gagnez de l’argent</span>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <div style="display:flex; align-items:center; gap:10px; margin-left:auto;">
+      <button class="auth-open-label-btn" type="button" onclick="openEarnPage()">Gagner</button>
+      <button class="nav-action-btn" type="button" onclick="openAuthModal()">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        S'inscrit
+      </button>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-text">
+      <h1>Centre des récompenses</h1>
+      <p>Accumule des points et soutiens des créateurs</p>
+      <button class="learn-more" onclick="showToast('Le programme récompense ton engagement chaque jour ✨')">
+        En savoir plus <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+    <div class="header-art">
+      <div class="money-badge"><i class="fa-solid fa-money-bill-wave"></i></div>
+      <div class="avatar-blob"><i class="fa-solid fa-user"></i></div>
+      <div class="phone-icon"><i class="fa-solid fa-music"></i></div>
+    </div>
+  </div>
+
+  <!-- BALANCE -->
+  <button class="balance-card" onclick="openModal()">
+    <div class="balance-left">
+      <div class="points"><span id="pointsValue">300</span><span class="p-badge">P</span></div>
+      <div class="value">Équivaut à <span id="pointsCfa">300</span> FCFA</div>
+    </div>
+    <div class="balance-right">Échanger <i class="fa-solid fa-chevron-right"></i></div>
+  </button>
+
+  <!-- WITHDRAW METHODS -->
+  <div class="section-title">Retraits rapides</div>
+  <div class="withdraw-grid">
+    <div class="withdraw-card">
+      <button class="withdraw-card" type="button" onclick="toggleWithdrawForm('paypal')" style="border:none;background:none;padding:0;text-align:center;cursor:pointer;width:100%;">
+        <div class="withdraw-icon paypal"><i class="fa-brands fa-paypal"></i></div>
+        <div class="withdraw-title">PayPal</div>
+        <div class="withdraw-desc">Vers votre compte PayPal</div>
+      </button>
+      <form class="withdraw-form" id="withdrawForm-paypal" onsubmit="submitWithdrawal(event, 'PayPal')">
+        <input class="withdraw-input" type="email" placeholder="Adresse e-mail PayPal" required>
+        <input class="withdraw-input" type="number" min="30000" placeholder="Montant à retirer (min 30 000)" required>
+        <button class="withdraw-submit" type="submit">Demander</button>
+      </form>
+    </div>
+
+    <div class="withdraw-card">
+      <button class="withdraw-card" type="button" onclick="toggleWithdrawForm('bitcoin')" style="border:none;background:none;padding:0;text-align:center;cursor:pointer;width:100%;">
+        <div class="withdraw-icon bitcoin"><i class="fa-brands fa-bitcoin"></i></div>
+        <div class="withdraw-title">Bitcoin</div>
+        <div class="withdraw-desc">Vers votre wallet BTC</div>
+      </button>
+      <form class="withdraw-form" id="withdrawForm-bitcoin" onsubmit="submitWithdrawal(event, 'Bitcoin')">
+        <input class="withdraw-input" type="text" placeholder="Adresse BTC" required>
+        <input class="withdraw-input" type="number" min="30000" placeholder="Montant à retirer (min 30 000)" required>
+        <button class="withdraw-submit" type="submit">Demander</button>
+      </form>
+    </div>
+
+    <div class="withdraw-card">
+      <button class="withdraw-card" type="button" onclick="toggleWithdrawForm('momo')" style="border:none;background:none;padding:0;text-align:center;cursor:pointer;width:100%;">
+        <div class="withdraw-icon momo"><i class="fa-solid fa-wallet"></i></div>
+        <div class="withdraw-title">MoMo</div>
+        <div class="withdraw-desc">Vers votre numéro MoMo</div>
+      </button>
+      <form class="withdraw-form" id="withdrawForm-momo" onsubmit="submitWithdrawal(event, 'MoMo')">
+        <input class="withdraw-input" type="tel" placeholder="Numéro MoMo" required>
+        <input class="withdraw-input" type="number" min="30000" placeholder="Montant à retirer (min 30 000)" required>
+        <button class="withdraw-submit" type="submit">Demander</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DAILY REWARDS -->
+  <div class="section-title">Récompenses quotidiennes</div>
+
+  <div class="streak-card">
+    <div class="streak-dates">10 avril - 23 avril</div>
+    <div class="streak-title">Connecte-toi tous les jours<br>pendant 10 jours et reçois</div>
+    <div class="streak-reward"><span class="p-badge">P</span> 4 500</div>
+
+    <div class="days-row" id="daysRow"></div>
+  </div>
+
+  <div class="footer-space"></div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"><i class="fa-solid fa-star"></i><span id="toastText"></span></div>
+
+  <!-- REDEEM MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <h3>Échanger mes points</h3>
+        <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-balance">Solde disponible : <b><span id="modalPoints">300</span> P</b> · <b><span id="modalCfa">300</span> FCFA</b></div>
+      <div id="rewardsList"></div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="authModalOverlay" onclick="closeAuthModalOnOverlay(event)">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <h3>Connexion / Inscription</h3>
+        <button class="modal-close" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" type="button" data-mode="login" onclick="showAuthMode('login')">Connexion</button>
+        <button class="auth-tab" type="button" data-mode="signup" onclick="showAuthMode('signup')">Inscription</button>
+      </div>
+
+      <form id="loginForm" class="auth-form active" onsubmit="handleAuthSubmit(event, 'login')">
+        <input class="auth-input" type="email" placeholder="Adresse e-mail" required>
+        <input class="auth-input" type="password" placeholder="Mot de passe" required>
+        <button class="auth-submit" type="submit">Se connecter</button>
+      </form>
+
+      <form id="signupForm" class="auth-form" onsubmit="handleAuthSubmit(event, 'signup')">
+        <input class="auth-input" type="text" placeholder="Nom d'utilisateur" required>
+        <input class="auth-input" type="email" placeholder="Adresse e-mail" required>
+        <input class="auth-input" type="password" placeholder="Mot de passe" required>
+        <input class="auth-input" type="password" placeholder="Confirmer le mot de passe" required>
+        <button class="auth-submit" type="submit">Créer mon compte</button>
+      </form>
+
+      <div class="auth-status" id="authStatus"></div>
+      <div class="auth-link">
+        <span id="authLinkText">Pas encore de compte ?</span>
+        <button type="button" id="authLinkButton" onclick="showAuthMode('signup')">Créer un compte</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="earn-overlay" id="earnOverlay" onclick="closeEarnPageOnOverlay(event)">
+    <div class="earn-sheet">
+      <div class="earn-head">
+        <h3>Gagner en un clic</h3>
+        <button class="modal-close" onclick="closeEarnPage()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div id="surveyContent"></div>
+
+      <div class="earn-actions">
+        <button class="earn-btn secondary" type="button" onclick="closeEarnPage()">Fermer</button>
+        <button id="surveyValidateBtn" class="earn-btn primary" type="button" onclick="submitEarnTask()">Valider</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ---------------- STATE ----------------
+  const state = {
+    points: 300,
+    days: [
+      { day: 1, reward: 182, claimed: false, claimedAt: null },
+      { day: 2, reward: 900, claimed: false, claimedAt: null },
+      { day: 3, reward: 300, claimed: false, claimedAt: null },
+      { day: 4, reward: 300, claimed: false, claimedAt: null },
+      { day: 5, reward: 300, claimed: false, claimedAt: null },
+      { day: 6, reward: 300, claimed: false, claimedAt: null },
+      { day: 7, reward: 300, claimed: false, claimedAt: null },
+      { day: 8, reward: 300, claimed: false, claimedAt: null },
+      { day: 9, reward: 300, claimed: false, claimedAt: null },
+      { day: 10, reward: 1400, claimed: false, claimedAt: null },
+    ]
+  };
+
+  const rewardsCatalog = [
+    { name: "Bon d'achat 100FCFA",        cost: 1000, icon: "fa-solid fa-tags" },
+    { name: "Autocollants exclusifs", cost: 500,  icon: "fa-solid fa-gift" },
+    { name: "Badge de soutien",       cost: 300,  icon: "fa-solid fa-award" },
+    { name: "1 mois sans publicité",  cost: 2000, icon: "fa-solid fa-ban" },
+  ];
+
+  const surveyQuestions = [
+    { prompt: "Quel type de contenu te plaît le plus ?", options: ["Vidéos", "Sondages", "Récompenses", "Tout"] },
+    { prompt: "À quelle fréquence tu veux gagner des points ?", options: ["Chaque jour", "Chaque semaine", "Occasionnellement", "Toujours"] },
+    { prompt: "Quel bonus te motive le plus ?", options: ["100 points", "500 points", "Récompenses exclusives", "Accès VIP"] },
+    { prompt: "Quel mode de retrait préfères-tu ?", options: ["PayPal", "Bitcoin", "MoMo", "Autre"] },
+    { prompt: "Quelle fonctionnalité aimerais-tu voir ensuite ?", options: ["Plus de vidéos", "Plus de sondages", "Des défis", "Des cadeaux"] },
+    { prompt: "Quel est ton niveau d’engagement ?", options: ["Très actif", "Actif", "Modéré", "Faible"] },
+    { prompt: "Quelle récompense te ferait revenir ?", options: ["Points", "Bon d’achat", "Badges", "Réductions"] },
+    { prompt: "Quel message te parle le plus ?", options: ["Gagne plus", "Échange facilement", "Reste connecté", "Profite de chaque jour"] },
+    { prompt: "Quel format te convient le mieux ?", options: ["Rapide", "Court", "Visuel", "Interactif"] },
+    { prompt: "Prêt à continuer à gagner avec nous ?", options: ["Oui, absolument", "Oui", "Peut-être", "Je suis déjà convaincu"] }
+  ];
+
+  let surveyIndex = 0;
+
+  function renderSurvey(){
+    const container = document.getElementById('surveyContent');
+    const button = document.getElementById('surveyValidateBtn');
+
+    if (surveyIndex >= surveyQuestions.length) {
+      container.innerHTML = `
+        <div class="earn-card">
+          <div class="survey-progress">Terminé</div>
+          <h4>🎉 Sondages complétés</h4>
+          <p class="survey-finish-text">Tu as répondu à toutes les questions. Tu reçois <strong>100 points</strong> de récompense, soit <strong>15 FCFA</strong>.</p>
+        </div>
+      `;
+      button.textContent = 'Fermer';
+      button.className = 'earn-btn primary';
+      button.onclick = () => closeEarnPage();
+      return;
+    }
+
+    const current = surveyQuestions[surveyIndex];
+    container.innerHTML = `
+      <div class="earn-card">
+        <div class="survey-progress">Question ${surveyIndex + 1} / ${surveyQuestions.length}</div>
+        <h4>${current.prompt}</h4>
+        ${current.options.map((opt) => `
+          <label class="earn-option">
+            <input type="radio" name="surveyOption" value="${opt}">
+            <span>${opt}</span>
+          </label>
+        `).join('')}
+      </div>
+    `;
+    button.textContent = 'Valider';
+    button.className = 'earn-btn primary';
+    button.onclick = () => submitEarnTask();
+  }
+
+  // ---------------- RENDER ----------------
+  function cfaValue(points){
+    return (points / 100 * 15).toLocaleString('fr-FR');
+  }
+
+  function renderBalance(){
+    document.getElementById('pointsValue').textContent = state.points.toLocaleString('fr-FR');
+    document.getElementById('pointsCfa').textContent = cfaValue(state.points);
+    document.getElementById('modalPoints').textContent = state.points.toLocaleString('fr-FR');
+    document.getElementById('modalCfa').textContent = cfaValue(state.points);
+  }
+
+  const COOLDOWN_HOURS = 150;
+  const COOLDOWN_MS = COOLDOWN_HOURS * 60 * 60 * 1000;
+
+  function getNow(){
+    return Date.now();
+  }
+
+  function formatRemainingTime(ms){
+    const totalHours = Math.ceil(ms / (60 * 60 * 1000));
+    if (totalHours <= 0) return 'maintenant';
+    if (totalHours < 24) return `${totalHours}h`;
+    const days = Math.floor(totalHours / 24);
+    const hours = totalHours % 24;
+    return `${days}j ${hours}h`;
+  }
+
+  function canClaimDay(day){
+    const entry = state.days.find(d => d.day === day);
+    if (!entry || entry.claimed) return false;
+    if (day === 1) return true;
+
+    const previousDay = state.days.find(d => d.day === day - 1);
+    if (!previousDay || !previousDay.claimed || !previousDay.claimedAt) return false;
+
+    return getNow() >= previousDay.claimedAt + COOLDOWN_MS;
+  }
+
+  function nextClaimableDay(){
+    return state.days.find(d => canClaimDay(d.day));
+  }
+
+  function getCooldownInfo(day){
+    if (day === 1) return null;
+
+    const entry = state.days.find(d => d.day === day);
+    const previousDay = state.days.find(d => d.day === day - 1);
+    if (!entry || entry.claimed || !previousDay || !previousDay.claimed || !previousDay.claimedAt) return null;
+
+    const remaining = previousDay.claimedAt + COOLDOWN_MS - getNow();
+    if (remaining <= 0) return null;
+
+    return `Disponible dans ${formatRemainingTime(remaining)}`;
+  }
+
+  function renderDays(){
+    const row = document.getElementById('daysRow');
+    row.innerHTML = '';
+    const next = nextClaimableDay();
+
+    state.days.forEach(d => {
+      const wrap = document.createElement('div');
+      wrap.className = 'day-item';
+
+      if (next && d.day === next.day){
+        const arrow = document.createElement('div');
+        arrow.className = 'day-arrow';
+        arrow.innerHTML = '<i class="fa-solid fa-chevron-up"></i>';
+        wrap.appendChild(arrow);
+      }
+
+      const box = document.createElement('button');
+      box.className = 'day-box';
+      if (d.claimed){
+        box.classList.add('claimed');
+        box.innerHTML = '<i class="fa-solid fa-check"></i>';
+      } else if (next && d.day === next.day){
+        box.classList.add('today');
+        box.innerHTML = `<span class="p-badge">P</span>${d.reward.toLocaleString('fr-FR')}`;
+        box.onclick = () => claimDay(d.day);
+      } else {
+        box.classList.add('locked');
+        box.innerHTML = `<span class="p-badge">P</span>${d.reward.toLocaleString('fr-FR')}`;
+        box.disabled = true;
+      }
+
+      const label = document.createElement('div');
+      label.className = 'day-label';
+      label.textContent = 'Jour ' + d.day;
+
+      const cooldownText = document.createElement('div');
+      cooldownText.className = 'day-label';
+      const info = getCooldownInfo(d.day);
+      cooldownText.textContent = info || '';
+      cooldownText.style.fontSize = '10px';
+      cooldownText.style.marginTop = '2px';
+
+      wrap.appendChild(box);
+      wrap.appendChild(label);
+      if (info) wrap.appendChild(cooldownText);
+      row.appendChild(wrap);
+    });
+  }
+
+  function claimDay(day){
+    const entry = state.days.find(d => d.day === day);
+    if (!entry || entry.claimed || !canClaimDay(day)) return;
+    entry.claimed = true;
+    entry.claimedAt = getNow();
+    state.points += entry.reward;
+    renderBalance();
+    renderDays();
+    renderRewards();
+    showToast(`+ ${entry.reward.toLocaleString('fr-FR')} points reçus pour le jour ${day} !`);
+  }
+
+  function renderRewards(){
+    const list = document.getElementById('rewardsList');
+    list.innerHTML = '';
+    rewardsCatalog.forEach((r, i) => {
+      const item = document.createElement('div');
+      item.className = 'reward-item';
+      const canAfford = state.points >= r.cost;
+      item.innerHTML = `
+        <div class="reward-info">
+          <div class="reward-icon"><i class="${r.icon}"></i></div>
+          <div>
+            <div class="reward-name">${r.name}</div>
+            <div class="reward-cost"><span class="p-badge">P</span>${r.cost.toLocaleString('fr-FR')}</div>
+          </div>
+        </div>
+        <button class="redeem-btn" ${canAfford ? '' : 'disabled'} onclick="redeem(${i})">
+          ${canAfford ? 'Échanger' : 'Insuffisant'}
+        </button>
+      `;
+      list.appendChild(item);
+    });
+  }
+
+  function redeem(index){
+    const r = rewardsCatalog[index];
+    if (state.points < r.cost) return;
+    state.points -= r.cost;
+    renderBalance();
+    renderRewards();
+    renderDays();
+    closeModal();
+    showToast(`Échangé : ${r.name} 🎉`);
+  }
+
+  function toggleWithdrawForm(method){
+    ['paypal','bitcoin','momo'].forEach((key) => {
+      const form = document.getElementById(`withdrawForm-${key}`);
+      if (form) form.classList.toggle('active', key === method);
+    });
+  }
+
+  function submitWithdrawal(event, method){
+    event.preventDefault();
+    const form = event.target;
+    const amountInput = form.querySelector('input[type="number"]');
+    const amount = Number(amountInput?.value || 0);
+
+    if (amount < 30000) {
+      showToast(`Le montant minimum pour un retrait est de 30 000 points (30 000 FCFA).`);
+      return;
+    }
+
+    showToast(`Demande de retrait ${method} enregistrée pour ${amount.toLocaleString('fr-FR')} FCFA.`);
+  }
+
+  // ---------------- TOAST ----------------
+  let toastTimer;
+  function showToast(msg){
+    const toast = document.getElementById('toast');
+    document.getElementById('toastText').textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+  }
+
+  // ---------------- MODAL ----------------
+  function openModal(){
+    renderRewards();
+    document.getElementById('modalOverlay').classList.add('show');
+  }
+  function closeModal(){
+    document.getElementById('modalOverlay').classList.remove('show');
+  }
+  function closeModalOnOverlay(e){
+    if (e.target.id === 'modalOverlay') closeModal();
+  }
+
+  // ---------------- AUTH ----------------
+  function openAuthModal(){
+    document.getElementById('authModalOverlay').classList.add('show');
+    showAuthMode('login');
+  }
+
+  function closeAuthModal(){
+    document.getElementById('authModalOverlay').classList.remove('show');
+  }
+
+  function closeAuthModalOnOverlay(e){
+    if (e.target.id === 'authModalOverlay') closeAuthModal();
+  }
+
+  function openEarnPage(){
+    surveyIndex = 0;
+    renderSurvey();
+    document.getElementById('earnOverlay').classList.add('show');
+  }
+
+  function closeEarnPage(){
+    document.getElementById('earnOverlay').classList.remove('show');
+  }
+
+  function closeEarnPageOnOverlay(e){
+    if (e.target.id === 'earnOverlay') closeEarnPage();
+  }
+
+  function submitEarnTask(){
+    const selected = document.querySelector('input[name="surveyOption"]:checked');
+    if (!selected) {
+      showToast('Choisis une réponse avant de valider.');
+      return;
+    }
+
+    if (surveyIndex + 1 >= surveyQuestions.length) {
+      state.points += 100;
+      renderBalance();
+      renderRewards();
+      renderDays();
+      surveyIndex = surveyQuestions.length;
+      renderSurvey();
+      showToast('+100 points reçus pour la fin des sondages !');
+      return;
+    }
+
+    surveyIndex += 1;
+    renderSurvey();
+  }
+
+  function showAuthMode(mode){
+    const tabs = document.querySelectorAll('.auth-tab');
+    tabs.forEach(tab => tab.classList.toggle('active', tab.dataset.mode === mode));
+
+    document.getElementById('loginForm').classList.toggle('active', mode === 'login');
+    document.getElementById('signupForm').classList.toggle('active', mode === 'signup');
+
+    const status = document.getElementById('authStatus');
+    const linkText = document.getElementById('authLinkText');
+    const linkButton = document.getElementById('authLinkButton');
+
+    status.textContent = '';
+    if (mode === 'login') {
+      linkText.textContent = 'Pas encore de compte ?';
+      linkButton.textContent = 'Créer un compte';
+      linkButton.onclick = () => showAuthMode('signup');
+    } else {
+      linkText.textContent = 'Déjà inscrit ?';
+      linkButton.textContent = 'Se connecter';
+      linkButton.onclick = () => showAuthMode('login');
+    }
+  }
+
+  function handleAuthSubmit(event, mode){
+    event.preventDefault();
+    const status = document.getElementById('authStatus');
+    if (mode === 'login') {
+      status.textContent = 'Connexion simulée avec succès. Bienvenue !';
+    } else {
+      status.textContent = 'Compte créé avec succès. Tu peux maintenant te connecter.';
+    }
+  }
+
+  // ---------------- INIT ----------------
+  renderBalance();
+  renderDays();
+  showAuthMode('login');
+  setInterval(() => {
+    renderDays();
+  }, 60000);
+</script>
+
+</body>
+</html>
